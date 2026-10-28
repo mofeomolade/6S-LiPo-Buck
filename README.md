@@ -38,11 +38,11 @@ A discrete, analog-controlled asynchronous buck converter designed to step down 
 ### Power Stage
 - **High-Side Switch:** N-channel MOSFET driven by an **IR2125** high-side gate driver with a dedicated bootstrap diode/capacitor circuit.
 - **Freewheeling Diode:** **MBRS360** Schottky diode providing low forward voltage drop ($V_F$) and fast recovery during switch off-time.
-- **Output Filter:** $470\,\mu\text{H}$ power inductor paired with low-ESR ceramic/electrolytic capacitance to suppress output voltage ripple.
+- **Output Filter:** $470\,\mu\text{H}$ power inductor paired with low-ESR capacitor to suppress output voltage ripple.
 
 ### Analog PWM Generation
 - **Sawtooth Oscillator:** An **LM334** constant-current source charges a timing capacitor into a **TLC555** timer to generate a linear 100 kHz ramp waveform.
-- **PWM Modulation:** The ramp is compared against the compensator output using an **MCP6561** high-speed comparator to produce the pulse-width modulated gate drive signal.
+- **PWM Modulation:** The ramp is compared against the compensator error using an **MCP6561** comparator to produce the pulse-width modulated gate drive signal.
 
 ### Loop Compensation (Type III Network)
 - Built around an **MCP6021** rail-to-rail operational amplifier.
