@@ -11,7 +11,7 @@ A discrete, analog-controlled asynchronous buck converter designed to step down 
 | **Input Voltage ($V_{in}$)** | 18.0V – 25.2V | Nominal 6S LiPo operating range (3.0V – 4.2V/cell) |
 | **Output Voltage ($V_{out}$)** | 5.0V | Regulated output for microcontrollers and sensors |
 | **Load Current ($I_{out}$)** | 100 mA – 500 mA | Designed for continuous conduction mode (CCM) across all loads |
-| **Switching Frequency ($f_{sw}$)** | 100 kHz | Analog sawtooth PWM carrier |
+| **Switching Frequency ($f_{sw}$)** | 100 kHz | Comparator inverting input sawtooth wave frequency |
 | **Target Efficiency** | ~85% | Optimized power path and component selection |
 | **Control Topology** | Voltage-Mode Control | Single-loop feedback with analog Type III compensation |
 
