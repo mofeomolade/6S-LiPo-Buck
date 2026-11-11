@@ -11,7 +11,7 @@ A discrete, analog-controlled asynchronous buck converter designed to step down 
 | **Input Voltage ($V_{in}$)** | 18.0V – 25.2V | Nominal 6S LiPo operating range (3.0V – 4.2V/cell) |
 | **Output Voltage ($V_{out}$)** | 5.0V | Regulated output for microcontrollers and sensors |
 | **Load Current ($I_{out}$)** | 100 mA – 500 mA | Designed for continuous conduction mode (CCM) across all loads |
-| **Switching Frequency ($f_{sw}$)** | 100 kHz | Analog sawtooth PWM carrier |
+| **Switching Frequency ($f_{sw}$)** | 100 kHz | Comparator inverting input sawtooth wave frequency |
 | **Target Efficiency** | ~85% | Optimized power path and component selection |
 | **Control Topology** | Voltage-Mode Control | Single-loop feedback with analog Type III compensation |
 
@@ -38,11 +38,11 @@ A discrete, analog-controlled asynchronous buck converter designed to step down 
 ### Power Stage
 - **High-Side Switch:** N-channel MOSFET driven by an **IR2125** high-side gate driver with a dedicated bootstrap diode/capacitor circuit.
 - **Freewheeling Diode:** **MBRS360** Schottky diode providing low forward voltage drop ($V_F$) and fast recovery during switch off-time.
-- **Output Filter:** $470\,\mu\text{H}$ power inductor paired with low-ESR ceramic/electrolytic capacitance to suppress output voltage ripple.
+- **Output Filter:** $470\,\mu\text{H}$ power inductor paired with low-ESR capacitor to suppress output voltage ripple.
 
 ### Analog PWM Generation
 - **Sawtooth Oscillator:** An **LM334** constant-current source charges a timing capacitor into a **TLC555** timer to generate a linear 100 kHz ramp waveform.
-- **PWM Modulation:** The ramp is compared against the compensator output using an **MCP6561** high-speed comparator to produce the pulse-width modulated gate drive signal.
+- **PWM Modulation:** The ramp is compared against the compensator error using an **MCP6561** comparator to produce the pulse-width modulated gate drive signal.
 
 ### Loop Compensation (Type III Network)
 - Built around an **MCP6021** rail-to-rail operational amplifier.
@@ -62,13 +62,3 @@ A discrete, analog-controlled asynchronous buck converter designed to step down 
   - Dedicated internal ground plane layer to shield noise and maintain low loop inductance.
   - Minimized loop area around the high $di/dt$ switching node (MOSFET Drain/Source and Schottky diode).
   - Isolated analog timing/feedback traces from the noisy switching node to prevent jitter in PWM ramp generation.
-
----
-
-## Project Structure
-
-```text
-├── LTspice sim_files/     # Schematics and transient/AC simulation files
-├── Altium/                # PCB schematics, layout files, and bill of materials
-├── Docs/                  # Mathematical derivations and planning notes
-└── README.md
